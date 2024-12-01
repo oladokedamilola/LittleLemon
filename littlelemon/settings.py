@@ -100,12 +100,18 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 
 import os
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'LittleLemon',
         'USER': 'root',
-        'PASSWORD': 'J.OSHUA2199a',
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Get password from the .env file
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
@@ -113,6 +119,7 @@ DATABASES = {
         },
     }
 }
+
 
 # Check if MySQL is accessible, else fallback to SQLite
 try:
